@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+Body {
+  padding: 40px;
+  background-color: rgb(238, 247, 123);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+p {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 60px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.title {
+  border: 2px solid grey;
+  background-color: aqua;
+}
+
+button {
+  border: 2 solid black;
+  font-size: 30px;
+  background-color: aquamarine;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.board-row {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+}
+
+.game-board {
+  margin: auto;
+  width: 500px;
+  height: 500px;
+}
