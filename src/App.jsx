@@ -63,7 +63,8 @@ const Board = () => {
   }
 
   function RestartGame() {
-    setBoardGame([["","",""],["","",""],["","",""]])
+    setBoardGame([["","",""],["","",""],["","",""]]);
+    setPlayerTurn("X");
   }
 
   function CheckForTie() {
