@@ -19,20 +19,25 @@ const Board = () => {
   const [playerTurn, setPlayerTurn] = useState("X");
 
   function UpdateBoard (row,col) {
-    if (boardGame[row][col] || CheckForWin()) {
+    if (boardGame[row][col] || CheckForWin() || CheckForTie()) {
       return;
     }
     const update = boardGame.slice();
     update[row][col] = playerTurn;
     setBoardGame(update);
-    if (CheckForWin()) {
+    if (CheckForWin() || CheckForTie()) {
       return;
     }
     setPlayerTurn(playerTurn == "X" ? 'O':'X');
   }
-  let winText = "";
+
+  let gameText = "";
   if (CheckForWin()) {
-    winText = "Player " + playerTurn + " Wins!";
+    gameText = "Player " + playerTurn + " Wins!";
+  } else if (CheckForTie()) {
+    gameText = "Game is a Tie!";
+  } else {
+    gameText = "Player " + playerTurn + "'s Turn";
   }
 
   function CheckForWin () {
@@ -56,20 +61,27 @@ const Board = () => {
       return false;
     }
   }
-  function SpawnResetButton() {
-    return(
-      <div>
-        <button>
-          Reset
-        </button>
-      </div>
-    )
+
+  function RestartGame() {
+    setBoardGame([["","",""],["","",""],["","",""]])
   }
 
-  return (
+  function CheckForTie() {
+    let check = true;
+    boardGame.forEach(element => {
+        element.forEach(subelement => {
+          if (subelement == "") {
+            check = false;
+          }
+        });
+    });
+    return check;
+  }
+  if (CheckForWin() || CheckForTie()) {
+    return (
     <div>
       <p>
-        Player {playerTurn}'s Turn!
+        {gameText}
       </p>
       <div class = "game-board">
         <div class = "board-row">
@@ -106,10 +118,54 @@ const Board = () => {
           </button>
         </div>
       </div>
-      <p style={{marginTop:'30px'}}>
-        {winText}
-      </p>
+      <button class="button-restart" onClick={() => RestartGame()}>
+        Restart
+      </button>
     </div>
-  )
+    )
+  } else {
+    return (
+      <div>
+        <p>
+          {gameText}
+        </p>
+        <div class = "game-board">
+          <div class = "board-row">
+            <button onClick={() => UpdateBoard(0,0)}>
+              {boardGame[0][0]}
+            </button>
+            <button onClick={() => UpdateBoard(0,1)}>
+              {boardGame[0][1]}
+            </button>
+            <button onClick={() => UpdateBoard(0,2)}>
+              {boardGame[0][2]}
+            </button>
+          </div>
+          <div class = "board-row">
+            <button onClick={() => UpdateBoard(1,0)}>
+              {boardGame[1][0]}
+            </button>
+            <button onClick={() => UpdateBoard(1,1)}>
+              {boardGame[1][1]}
+            </button>
+            <button onClick={() => UpdateBoard(1,2)}>
+              {boardGame[1][2]}
+            </button>
+          </div>
+          <div class = "board-row">
+            <button onClick={() => UpdateBoard(2,0)}>
+              {boardGame[2][0]}
+            </button>
+            <button onClick={() => UpdateBoard(2,1)}>
+              {boardGame[2][1]}
+            </button>
+            <button onClick={() => UpdateBoard(2,2)}>
+              {boardGame[2][2]}
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 export default App
