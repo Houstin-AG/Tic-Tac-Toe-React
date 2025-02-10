@@ -17,9 +17,6 @@ const Board = () => {
 
   const [boardGame, setBoardGame] = useState([["","",""],["","",""],["","",""]]);
   const [playerTurn, setPlayerTurn] = useState("X");
- // useEffect(() => {
- //   CheckForWin()
- // }, [boardGame])
 
   function UpdateBoard (row,col) {
     if (boardGame[row][col] || CheckForWin()) {
