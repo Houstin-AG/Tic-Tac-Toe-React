@@ -14,27 +14,28 @@ const App = () => {
 }
 
 const Board = () => {
+
   const [boardGame, setBoardGame] = useState([["","",""],["","",""],["","",""]]);
   const [playerTurn, setPlayerTurn] = useState("X");
-  const [winText, setWinText] = useState("");
  // useEffect(() => {
  //   CheckForWin()
  // }, [boardGame])
 
   function UpdateBoard (row,col) {
-    if ((boardGame[row][col] == "")) {
-      let update = boardGame;
-      update[row][col] = playerTurn;
-      setBoardGame(update);
-      console.log(boardGame[0]);
-      console.log(boardGame[1]);
-      console.log(boardGame[2]);
-      if (CheckForWin()) {
-        setWinText("Player " + playerTurn + " Wins!");
-      } else {
-      //  setPlayerTurn(playerTurn == "X" ? 'O':'X');
-      }
+    if (boardGame[row][col] || CheckForWin()) {
+      return;
     }
+    const update = boardGame.slice();
+    update[row][col] = playerTurn;
+    setBoardGame(update);
+    if (CheckForWin()) {
+      return;
+    }
+    setPlayerTurn(playerTurn == "X" ? 'O':'X');
+  }
+  let winText = "";
+  if (CheckForWin()) {
+    winText = "Player " + playerTurn + " Wins!";
   }
 
   function CheckForWin () {
@@ -57,6 +58,15 @@ const Board = () => {
     } else {
       return false;
     }
+  }
+  function SpawnResetButton() {
+    return(
+      <div>
+        <button>
+          Reset
+        </button>
+      </div>
+    )
   }
 
   return (
