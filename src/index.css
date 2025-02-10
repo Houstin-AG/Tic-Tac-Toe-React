@@ -26,7 +26,7 @@ p {
 
 button {
   border: 2px solid black;
-  font-size: 30px;
+  font-size: 100px;
   background-color: aquamarine;
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -48,10 +48,11 @@ button {
 .button-restart {
   margin-top: 30px;
   border: 5px solid black;
-  font-size: 30px;
+  font-size: 50px;
   background-color: white;
-  width: 200px;
-  height: 50px;
+  width: 350px;
+  height: 100px;
   text-align: center;
   cursor: pointer;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
