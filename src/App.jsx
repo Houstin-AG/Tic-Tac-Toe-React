@@ -78,8 +78,20 @@ const Board = () => {
     });
     return check;
   }
-  if (CheckForWin() || CheckForTie()) {
-    return (
+
+  const AddResetButton = () => {
+    if (CheckForWin() || CheckForTie()) {
+      return (
+        <button onClick={() => RestartGame()} class="button-restart">
+          Restart
+        </button>
+      )
+    } else {
+      return;
+    }
+  }
+
+  return (
     <div>
       <p>
         {gameText}
@@ -119,54 +131,8 @@ const Board = () => {
           </button>
         </div>
       </div>
-      <button class="button-restart" onClick={() => RestartGame()}>
-        Restart
-      </button>
+      <AddResetButton/>
     </div>
-    )
-  } else {
-    return (
-      <div>
-        <p>
-          {gameText}
-        </p>
-        <div class = "game-board">
-          <div class = "board-row">
-            <button onClick={() => UpdateBoard(0,0)}>
-              {boardGame[0][0]}
-            </button>
-            <button onClick={() => UpdateBoard(0,1)}>
-              {boardGame[0][1]}
-            </button>
-            <button onClick={() => UpdateBoard(0,2)}>
-              {boardGame[0][2]}
-            </button>
-          </div>
-          <div class = "board-row">
-            <button onClick={() => UpdateBoard(1,0)}>
-              {boardGame[1][0]}
-            </button>
-            <button onClick={() => UpdateBoard(1,1)}>
-              {boardGame[1][1]}
-            </button>
-            <button onClick={() => UpdateBoard(1,2)}>
-              {boardGame[1][2]}
-            </button>
-          </div>
-          <div class = "board-row">
-            <button onClick={() => UpdateBoard(2,0)}>
-              {boardGame[2][0]}
-            </button>
-            <button onClick={() => UpdateBoard(2,1)}>
-              {boardGame[2][1]}
-            </button>
-            <button onClick={() => UpdateBoard(2,2)}>
-              {boardGame[2][2]}
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  )
 }
 export default App
